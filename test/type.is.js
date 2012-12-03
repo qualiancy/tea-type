@@ -21,15 +21,20 @@ describe('type.is()', function () {
   it('should detect custom test as function', function () {
     type.test('bln', function (obj) {
       if ('boolean' === type(obj)) return true;
-      if (obj === 'yes'|| obj === 'no') return true;
-      return false;
+      var blns = [ 'yes', 'no', 'true', 'false', 1, 0 ];
+      if ('string' === type(obj)) obj = obj.toLowerCase();
+      return !! ~blns.indexOf(obj);
     });
 
     type.is(true, 'bln').should.be.true;
     type.is(false, 'bln').should.be.true;
     type.is('yes', 'bln').should.be.true;
     type.is('no', 'bln').should.be.true;
-    type.is('true', 'bln').should.be.false;
-    type.is('false', 'bln').should.be.false;
+    type.is('true', 'bln').should.be.true;
+    type.is('False', 'bln').should.be.true;
+    type.is(1, 'bln').should.be.true;
+    type.is(0, 'bln').should.be.true;
+    type.is(2, 'bln').should.be.false;
+    type.is('nope', 'bln').should.be.false;
   });
 });
