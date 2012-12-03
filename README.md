@@ -16,6 +16,58 @@
 
     $ component install qualiancy/tea-type
 
+## Usage
+
+Simple usage returns a more accurate `typeof` string.
+
+```js
+var type = requre('tea-type');
+
+type([ 1,2 ]).should.equal('array');
+type('hello world').should.equal('string');
+type(/abc/g).should.equal('regexp');
+type(new Date).should.equal('data');
+// etc...
+```
+
+Also, simple testing of object types.
+
+```js
+type.is([], 'array').should.be.true;
+type.is('1', 'number').should.be.false;
+// etc
+```
+
+But you can also add your own custom type tests using `.test()`. The test
+can be a regular expression or function.
+
+```js
+// regular expression
+type.test('int', /^[0-9]+$/);
+type.is('1', 'int').should.be.true;
+type.is('a', 'int').should.be.false;
+
+
+// function
+type.test('bln', function (obj) {
+  if ('boolean' === type(obj)) return true;
+  var blns = [ 'yes', 'no', 'true', 'false', 1, 0 ];
+  if ('string' === type(obj)) obj = obj.toLowerCase();
+  return !! ~blns.indexOf(obj);
+});
+
+type.is(true, 'bln').should.be.true;
+type.is(false, 'bln').should.be.true;
+type.is('Yes', 'bln').should.be.true;
+type.is('no', 'bln').should.be.true;
+type.is('true', 'bln').should.be.true;
+type.is('False', 'bln').should.be.true;
+type.is(1, 'bln').should.be.true;
+type.is(0, 'bln').should.be.true;
+type.is(2, 'bln').should.be.false;
+type.is('nope', 'bln').should.be.false;
+```
+
 ## License
 
 (The MIT License)
