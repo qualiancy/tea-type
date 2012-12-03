@@ -1,10 +1,12 @@
 {
     "name": "tea-type"
   , "repo": "qualiancy/tea-type"
-  , "version": "0.0.0"
+  , "version": "0.1.0"
   , "description": "Better typeof detection for node.js and the browser."
   , "license": "MIT"
   , "keywords": [
+        "utility"
+      , "typeof"
     ]
   , "main": "lib/type.js"
   , "scripts": [

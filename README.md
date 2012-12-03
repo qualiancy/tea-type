@@ -1,6 +1,6 @@
-# tea-type
+# tea-type [![Build Status](https://secure.travis-ci.org/qualiancy/tea-type.png?branch=master)](https://travis-ci.org/qualiancy/tea-type)
 
-> Better typeof detection for node.js and the browser.
+> Better typeof detection and assertions for node.js and the browser.
 
 ## Installation
 
@@ -18,7 +18,8 @@
 
 ## Usage
 
-Simple usage returns a more accurate `typeof` string.
+Simple usage returns a more accurate `typeof` string. Examples augmented with
+[chai](http://chaijs.com) assertions.
 
 ```js
 var type = requre('tea-type');
