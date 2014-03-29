@@ -27,7 +27,7 @@ var type = requre('tea-type');
 type([ 1,2 ]).should.equal('array');
 type('hello world').should.equal('string');
 type(/abc/g).should.equal('regexp');
-type(new Date).should.equal('data');
+type(new Date).should.equal('date');
 // etc...
 ```
 
